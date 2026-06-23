@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.log
+*.pdf
+*.zip
+artifacts/
+scratch/
+public/
+jest_output.txt
+customer_collection.json
+maid_postman_collection.json
+zaffabit_maid_app.postman_collection.json
+zaffabit_postman_collection.json

@@ -1,0 +1,2862 @@
+{
+  "info": {
+    "_postman_id": "8a32b9dc-0c1a-493e-8c31-419b6a9c1e14",
+    "name": "Zaffabit Customer App Screen Flow",
+    "description": "Chronological end-to-end screen-by-screen testing flow for Zaffabit Customer App. Start from Request 1 and proceed sequentially. Session variables (tokens, address IDs, booking IDs) are captured automatically by post-response test scripts.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Step 1: Splash Screen (Get Content)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/content/splash",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "content", "splash"]
+        },
+        "description": "Splash Screen: Initiates app startup and pulls splash content, banners, and default configuration metadata."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/content/splash",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "content", "splash"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:04 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"b8-7LwESH80gAJhaJvV4fmqLqApT+A\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "M4YjMrT5SOKcharxlt7tkg"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "content-length",
+              "value": "184"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Splash content fetched\",\n  \"data\": {\n    \"splash\": []\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"8d5bbaef-a0ba-4dab-8eb0-b67b8bd517e2\",\n    \"timestamp\": \"2026-06-13T08:02:04.577Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 2: Login Screen (Send OTP)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"+919999999999\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/send-otp",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "send-otp"]
+        },
+        "description": "Login Screen: Customer inputs their phone number and triggers authentication SMS code verification."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+919999999999\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/auth/send-otp",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "auth", "send-otp"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:05 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"d2-gqBOqYzmT7sv2nEr3Kfco1k+3BM\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "5NsuqRuSSIiA9sVoWUN5dQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "content-length",
+              "value": "210"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"OTP sent successfully\",\n  \"data\": {\n    \"phone\": \"+919999999999\",\n    \"otp\": \"123456\"\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"43d395a1-d8ed-4a16-99d7-779dbcb44297\",\n    \"timestamp\": \"2026-06-13T08:02:05.774Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 3: OTP Screen (Verify OTP)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseJson = pm.response.json();",
+              "if (responseJson && responseJson.data && responseJson.data.token) {",
+              "    pm.environment.set(\"customerToken\", responseJson.data.token);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"+919999999999\",\n  \"otp\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/verify-otp",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "verify-otp"]
+        },
+        "description": "OTP Screen: Verifies verification code. Dynamically updates the `customerToken` variable in your environment."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+919999999999\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/auth/verify-otp",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "auth", "verify-otp"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:07 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"22e-nXfffo2q2nWEkM19hFjV/h5NOgs\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "uUbwSNR7QZCk90aextoGcA"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Verification successful\",\n  \"data\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMzBlMGQzYzA0NDYzMmU2MTMzNDEzNCIsImlhdCI6MTc4MTU4ODE3OSwiZXhwIjoxNzgyMTkyOTc5fQ.xfwuG_TOZZagdsXLOkfbURw2bSD6CAMThBFeXOYgdJo\",\n    \"user\": {\n      \"id\": \"6a30e0d3c044632e61334134\",\n      \"phone\": \"9123456789\",\n      \"role\": \"customer\",\n      \"isVerified\": true,\n      \"language\": \"en\",\n      \"walletBalance\": 0,\n      \"rewardPoints\": 0,\n      \"referralCode\": \"AR-MVKFGH\",\n      \"customerProfile\": \"6a30e0d3c044632e61334135\"\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"8871656c-fdeb-4122-9169-28e7bc8d6de2\",\n    \"timestamp\": \"2026-06-16T05:36:19.444Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 4: Language Screen (Set Locale)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"language\": \"ml\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/language",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "language"]
+        },
+        "description": "Language Selection Screen: Sets locale preference to 'ml' (Malayalam), 'en' (English), 'hi' (Hindi), or 'ta' (Tamil)."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"language\": \"ml\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/auth/language",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "auth", "language"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:07 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"d1-0ieK5MQU/kByV8Ugz8Qq4qwbS4I\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "kb_zmVtURieLMxC7npoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "content-length",
+              "value": "209"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Language updated successfully\",\n  \"data\": {\n    \"language\": \"ml\",\n    \"locale\": \"ml\"\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"c6eac4a0-fbb1-4d1a-96d1-3eeb9086ed0b\",\n    \"timestamp\": \"2026-06-13T08:02:07.661Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 5: Name Screen (Register Profile)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Alex\",\n  \"lastName\": \"Varghese\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/profile",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "profile"]
+        },
+        "description": "Name Screen: Onboarding setup to save the user's first and last name values."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Alex\",\n  \"lastName\": \"Varghese\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/auth/profile",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "auth", "profile"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:09 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"12b-dR1UuWSRUEXIKmiGokjiiEXDKxw\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "nDgvnnxpTpOSkEMJ9I3ezw"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Profile updated successfully\",\n  \"data\": {\n    \"user\": {\n      \"id\": \"6a30e0d3c044632e61334134\",\n      \"phone\": \"9123456789\",\n      \"role\": \"customer\",\n      \"isVerified\": true,\n      \"name\": \"Reno Roy\",\n      \"firstName\": \"Reno\",\n      \"lastName\": \"Roy\",\n      \"language\": \"en\",\n      \"walletBalance\": 0,\n      \"rewardPoints\": 0,\n      \"referralCode\": \"AR-MVKFGH\",\n      \"customerProfile\": \"6a30e0d3c044632e61334135\"\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"2b2f425d-98c1-425a-980b-d2b7b970909e\",\n    \"timestamp\": \"2026-06-16T05:36:19.689Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 6: Location Screen (Search Coordinates)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/locations/search?query=Kochi",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "locations", "search"],
+          "query": [
+            {
+              "key": "query",
+              "value": "Kochi"
+            }
+          ]
+        },
+        "description": "Location & Map Selection Screen: Queries map location latitude/longitude coordinates (Mocked endpoint for manual search override)."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/locations/search?query=Kochi",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "locations", "search"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Kochi"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:10 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"aa-FTiqcAZSl4PL6JLYL1ObLrRUTAo\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "BE5j0W31TJ6iaGq3xtoGcA"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "content-length",
+              "value": "170"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Locations retrieved\",\n  \"data\": [],\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"9b058f8a-1126-4f20-9604-4947c604de73\",\n    \"timestamp\": \"2026-06-13T08:02:10.041Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 7: AddressDetails Screen (Save Address)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseJson = pm.response.json();",
+              "if (responseJson && responseJson.data && responseJson.data._id) {",
+              "    pm.environment.set(\"addressId\", responseJson.data._id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Home Flat\",\n  \"addressLine1\": \"Flat 8A, Skyline apartments\",\n  \"city\": \"Kochi\",\n  \"pincode\": \"682030\",\n  \"coordinates\": {\n    \"lat\": 10.0159,\n    \"lng\": 76.3419\n  },\n  \"title\": \"Home Flat\",\n  \"houseName\": \"Flat 8A, Skyline apartments\",\n  \"latitude\": 10.0159,\n  \"longitude\": 76.3419\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/customers/addresses",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "customers", "addresses"]
+        },
+        "description": "Address Details Screen: Saves flat address coordinates. Dynamically stores `addressId` environment variable."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Home Flat\",\n  \"addressLine1\": \"Flat 8A, Skyline apartments\",\n  \"city\": \"Kochi\",\n  \"pincode\": \"682030\",\n  \"coordinates\": {\n    \"lat\": 10.0159,\n    \"lng\": 76.3419\n  },\n  \"title\": \"Home Flat\",\n  \"houseName\": \"Flat 8A, Skyline apartments\",\n  \"latitude\": 10.0159,\n  \"longitude\": 76.3419\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/customers/addresses",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "customers", "addresses"],
+              "query": []
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:11 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"ed3-fEmEyjMKKm6dpyVBY0BeGJ+BwOg\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "blNyjVEaSy6Cm0uX9I3ezw"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Address added\",\n  \"data\": {\n    \"addresses\": [\n      {\n        \"title\": \"Home\",\n        \"houseName\": \"Apartment 1A\",\n        \"street\": \"Kakkanad\",\n        \"landmark\": \"\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"phone\": \"+919999999999\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a21a664145f20de670c561e\"\n      },\n      {\n        \"title\": \"Home\",\n        \"houseName\": \"Apartment 1A\",\n        \"street\": \"Kakkanad\",\n        \"landmark\": \"\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"phone\": \"+919999999999\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a21a78b145f20de670c5636\"\n      },\n      {\n        \"title\": \"Home\",\n        \"houseName\": \"Apartment 1A\",\n        \"street\": \"Kakkanad\",\n        \"landmark\": \"\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"phone\": \"+919999999999\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a26634c6662740c82e81bc0\"\n      },\n      {\n        \"title\": \"Home\",\n        \"houseName\": \"Apartment 1A\",\n        \"street\": \"Kakkanad\",\n        \"landmark\": \"\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"phone\": \"+919999999999\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2665e822fc461182481e93\"\n      },\n      {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c3eb4ba4b8af864b995a5\"\n      },\n      {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c3f07ba4b8af864b9962d\"\n      },\n      {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c3f37ba4b8af864b996cc\"\n      },\n      {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c3f6bba4b8af864b9977d\"\n      },\n      {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4372ba4b8af864b99841\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c466cba4b8af864b999bd\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c46beba4b8af864b99aae\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4700ba4b8af864b99bb9\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4882ba4b8af864b99ce3\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4931ba4b8af864b99e5b\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4987ba4b8af864b9a062\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4a19ba4b8af864b9a253\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4a66ba4b8af864b9a49e\"\n      },\n      {\n        \"title\": \"My Flat\",\n        \"houseName\": \"Flat 4B, Ocean Towers\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682001\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2c4b0cba4b8af864b9a775\"\n      },\n      {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\",\n        \"latitude\": 10.0159,\n        \"longitude\": 76.3419,\n        \"isDefault\": true,\n        \"_id\": \"6a2d0e83aff5f95b7452d086\"\n      }\n    ]\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"8c018ae9-8f17-47a0-9743-c78a310e9178\",\n    \"timestamp\": \"2026-06-13T08:02:11.541Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 8: CustomHomeDetails Screen (BHK Config)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bhkType\": \"3BHK\",\n  \"customSize\": 1600,\n  \"roomsConfig\": {\n    \"bathrooms\": 3,\n    \"balconies\": 2\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/customers/property-profile",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "customers", "property-profile"]
+        },
+        "description": "Custom Home Details Screen: Configures size metrics of the property."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bhkType\": \"3BHK\",\n  \"customSize\": 1600,\n  \"roomsConfig\": {\n    \"bathrooms\": 3,\n    \"balconies\": 2\n  }\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/customers/property-profile",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "customers", "property-profile"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:12 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"12f-rhsmKBxAR01BngXf4SytCl6220E\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "IYqFSjsbTemjWQdc0_TJvA"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Property profile saved\",\n  \"data\": {\n    \"propertyProfile\": {\n      \"surfaceType\": [],\n      \"bhkType\": \"3BHK\",\n      \"hasPets\": false,\n      \"homeType\": \"Apartment\",\n      \"memberCount\": 2,\n      \"petTemperament\": null\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"d96f249d-c35d-49cb-9993-af56ed338e1c\",\n    \"timestamp\": \"2026-06-13T08:02:12.748Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 9: HomeScreen (Get Featured Banners)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/content/splash",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "content", "splash"]
+        },
+        "description": "HomeScreen: Fetches active sliding banner cards and featured category items."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/content/splash",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "content", "splash"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:13 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"b8-kO9kM7lU+Y/bXkVJjJMGjqUCE4Y\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "g3qjxNhqTB-CgzboY53eZw"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "content-length",
+              "value": "184"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Splash content fetched\",\n  \"data\": {\n    \"splash\": []\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"be94f210-81a4-4348-b859-c3298bc38fbe\",\n    \"timestamp\": \"2026-06-13T08:02:13.651Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 10: ServiceList Screen (List Packages)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseJson = pm.response.json();",
+              "if (responseJson && responseJson.data && responseJson.data.services && responseJson.data.services.length > 0) {",
+              "    pm.environment.set(\"serviceId\", responseJson.data.services[0]._id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/services?category=Deep%20Cleaning&limit=10&page=1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "services"],
+          "query": [
+            {
+              "key": "category",
+              "value": "Deep Cleaning"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            }
+          ]
+        },
+        "description": "ServiceList: Displays available sub-services. Stores the first returned service record's ID as `serviceId`."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/services?category=Deep%20Cleaning&limit=10&page=1",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "services"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Deep Cleaning"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:14 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"29e-m4gEKB041OH7XpEWFvZ6oCozPjk\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "j4zkmtD0QJujqVicnpoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Services retrieved\",\n  \"data\": {\n    \"services\": [\n      {\n        \"_id\": \"6a28325956af54824369fcff\",\n        \"name\": \"Instant Simulation Service\",\n        \"description\": \"Provides live coordinates stream and OTP live updates in simulator.\",\n        \"category\": \"Deep Cleaning\",\n        \"price\": 499,\n        \"estimatedTime\": 60,\n        \"whatsIncluded\": [],\n        \"doesNotInclude\": [],\n        \"status\": \"active\",\n        \"howItsDone\": [],\n        \"faqs\": [],\n        \"createdAt\": \"2026-06-09T15:33:45.808Z\",\n        \"updatedAt\": \"2026-06-09T15:33:45.808Z\",\n        \"__v\": 0\n      }\n    ]\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"134bdb8c-c94a-44fd-9a99-66962998680f\",\n    \"timestamp\": \"2026-06-13T08:02:14.877Z\",\n    \"pagination\": {\n      \"page\": 1,\n      \"perPage\": 10,\n      \"totalItems\": 1,\n      \"totalPages\": 1,\n      \"hasNextPage\": false,\n      \"hasPrevPage\": false\n    }\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 11: ServiceDetails Screen (FAQ & Price)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/services/{{serviceId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "services", "{{serviceId}}"]
+        },
+        "description": "ServiceDetails Screen: Shows selected package deliverables, reviews, pricing, and FAQ items."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/services/6a28325956af54824369fcff",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "services", "6a28325956af54824369fcff"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:15 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"22f-ICdMA6jw9CUdz7VzbXGwDtmtL8I\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "1nCdn15cQAePbiAknpoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Service retrieved\",\n  \"data\": {\n    \"service\": {\n      \"_id\": \"6a28325956af54824369fcff\",\n      \"name\": \"Instant Simulation Service\",\n      \"description\": \"Provides live coordinates stream and OTP live updates in simulator.\",\n      \"category\": \"Deep Cleaning\",\n      \"price\": 499,\n      \"estimatedTime\": 60,\n      \"whatsIncluded\": [],\n      \"doesNotInclude\": [],\n      \"status\": \"active\",\n      \"howItsDone\": [],\n      \"faqs\": [],\n      \"createdAt\": \"2026-06-09T15:33:45.808Z\",\n      \"updatedAt\": \"2026-06-09T15:33:45.808Z\",\n      \"__v\": 0\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"d4cfedee-063e-4050-b309-bb1a366a0d68\",\n    \"timestamp\": \"2026-06-13T08:02:15.908Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 12: HourlyServices Screen (Price Estimate)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/services/estimate?items={{serviceId}}&bhkType=3BHK&frequency=one-time&surface=tiles",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "services", "estimate"],
+          "query": [
+            {
+              "key": "items",
+              "value": "6a28325956af54824369fcff"
+            },
+            {
+              "key": "bhkType",
+              "value": "3BHK"
+            },
+            {
+              "key": "frequency",
+              "value": "one-time"
+            },
+            {
+              "key": "surface",
+              "value": "tiles"
+            }
+          ]
+        },
+        "description": "Hourly/Custom Services Estimation: Performs coefficient-based duration and cost calculations."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/services/estimate?items=6a28325956af54824369fcff&bhkType=3BHK&frequency=one-time&surface=tiles",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "services", "estimate"],
+              "query": [
+                {
+                  "key": "items",
+                  "value": "6a28325956af54824369fcff"
+                },
+                {
+                  "key": "bhkType",
+                  "value": "3BHK"
+                },
+                {
+                  "key": "frequency",
+                  "value": "one-time"
+                },
+                {
+                  "key": "surface",
+                  "value": "tiles"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:17 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"12a-81SGGKYOBp5nvGFZR4FLAco1BJ4\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "Rx4YG1i1Szie2WdvnpoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Time estimation calculated\",\n  \"data\": {\n    \"baseTime\": 60,\n    \"bhkType\": \"3BHK\",\n    \"frequency\": \"one-time\",\n    \"surface\": \"tiles\",\n    \"estimatedTimeMinutes\": 60,\n    \"formattedTime\": \"1h 0m\"\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"df5b3cd3-821d-4236-934c-45b6aa2ba7ee\",\n    \"timestamp\": \"2026-06-13T08:02:17.118Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 13: Cart Screen (Add Item)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"serviceId\": \"6a28325956af54824369fcff\",\n  \"quantity\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cart/items",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cart", "items"]
+        },
+        "description": "Cart View: Adds selected cleaning package parameters into the customer's checkout cart."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceId\": \"6a28325956af54824369fcff\",\n  \"quantity\": 1\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/cart/items",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "cart", "items"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:19 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"456-ZwUK+dB+jq+hb05yU+KcwJfJh4k\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "FfWP5SHGS5OUFXOWnpoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Items added to cart\",\n  \"data\": {\n    \"cart\": {\n      \"_id\": \"6a21a3cf145f20de670c561d\",\n      \"customer\": \"6a21a3cb145f20de670c561b\",\n      \"serviceCart\": [\n        {\n          \"service\": {\n            \"_id\": \"6a21257099f882ee15b87cb6\",\n            \"name\": \"cleaning\",\n            \"category\": \"HOME\",\n            \"price\": 150,\n            \"estimatedTime\": 30,\n            \"image\": \"https://res.cloudinary.com/dydsfw6w7/image/upload/v1780592384/zaffabit/services/lq550xrevofrui9h6byo.png\"\n          },\n          \"duration\": 30\n        },\n        {\n          \"service\": {\n            \"_id\": \"6a16b5bb559cec1a50a2b830\",\n            \"name\": \"Bathroom Deep Cleaning\",\n            \"category\": \"Bathroom Cleaning\",\n            \"price\": 25,\n            \"estimatedTime\": 40,\n            \"image\": \"https://res.cloudinary.com/dydsfw6w7/image/upload/v1780920876/zaffabit/services/e7flehf0xmp3jksla2ys.png\"\n          },\n          \"duration\": 40\n        },\n        {\n          \"service\": {\n            \"_id\": \"6a28325956af54824369fcff\",\n            \"name\": \"Instant Simulation Service\",\n            \"category\": \"Deep Cleaning\",\n            \"price\": 499,\n            \"estimatedTime\": 60\n          },\n          \"duration\": 960\n        }\n      ],\n      \"totalAmount\": 8159,\n      \"createdAt\": \"2026-06-04T16:11:59.303Z\",\n      \"updatedAt\": \"2026-06-13T08:02:18.887Z\",\n      \"__v\": 3\n    },\n    \"billDetails\": {\n      \"subtotal\": 8159,\n      \"platformFee\": 29,\n      \"gst\": 734,\n      \"total\": 8922\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"caf16bd9-e4e0-4da7-8880-6f9bf2da4ebe\",\n    \"timestamp\": \"2026-06-13T08:02:19.440Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 14: AddMoreServices Screen (Upsell Addition)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cart",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cart"]
+        },
+        "description": "Add More Services Screen: Pulls active items inside the cart to cross-reference with upsell options."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/cart",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "cart"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:20 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"451-mjob6yEzYQpLbd9qGjBc5iCCqw8\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "u5HtTpptRtidXGP0npoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Cart retrieved\",\n  \"data\": {\n    \"cart\": {\n      \"_id\": \"6a21a3cf145f20de670c561d\",\n      \"customer\": \"6a21a3cb145f20de670c561b\",\n      \"serviceCart\": [\n        {\n          \"service\": {\n            \"_id\": \"6a21257099f882ee15b87cb6\",\n            \"name\": \"cleaning\",\n            \"category\": \"HOME\",\n            \"price\": 150,\n            \"estimatedTime\": 30,\n            \"image\": \"https://res.cloudinary.com/dydsfw6w7/image/upload/v1780592384/zaffabit/services/lq550xrevofrui9h6byo.png\"\n          },\n          \"duration\": 30\n        },\n        {\n          \"service\": {\n            \"_id\": \"6a16b5bb559cec1a50a2b830\",\n            \"name\": \"Bathroom Deep Cleaning\",\n            \"category\": \"Bathroom Cleaning\",\n            \"price\": 25,\n            \"estimatedTime\": 40,\n            \"image\": \"https://res.cloudinary.com/dydsfw6w7/image/upload/v1780920876/zaffabit/services/e7flehf0xmp3jksla2ys.png\"\n          },\n          \"duration\": 40\n        },\n        {\n          \"service\": {\n            \"_id\": \"6a28325956af54824369fcff\",\n            \"name\": \"Instant Simulation Service\",\n            \"category\": \"Deep Cleaning\",\n            \"price\": 499,\n            \"estimatedTime\": 60\n          },\n          \"duration\": 960\n        }\n      ],\n      \"totalAmount\": 8159,\n      \"createdAt\": \"2026-06-04T16:11:59.303Z\",\n      \"updatedAt\": \"2026-06-13T08:02:18.887Z\",\n      \"__v\": 3\n    },\n    \"billDetails\": {\n      \"subtotal\": 8159,\n      \"platformFee\": 29,\n      \"gst\": 734,\n      \"total\": 8922\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"b4b48d70-5f10-4e23-9a41-a3e8802f9f9d\",\n    \"timestamp\": \"2026-06-13T08:02:20.901Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 15: Schedule Screen (Get Slots)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/bookings/available-slots",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "bookings", "available-slots"]
+        },
+        "description": "Schedule Config: Queries active day-ahead horizons and dynamic hourly slots available for customer selection."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/bookings/available-slots",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "bookings", "available-slots"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:22 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"109-eMVVDDmvt85Y3ddh58DK/D66cqM\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "UiYQQF23Slia6s0nnpoFkQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Available slots retrieved\",\n  \"data\": {\n    \"dates\": [\n      \"2026-06-13\",\n      \"2026-06-14\"\n    ],\n    \"slots\": [\n      \"08:00 AM\",\n      \"11:00 AM\",\n      \"02:00 PM\",\n      \"05:00 PM\"\n    ]\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"d45d4759-9515-4faa-ad67-68a1f614aaaa\",\n    \"timestamp\": \"2026-06-13T08:02:22.101Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 16: BookingSummary Screen (Create Booking)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseJson = pm.response.json();",
+              "if (responseJson && responseJson.data && responseJson.data.booking) {",
+              "    pm.environment.set(\"bookingId\", responseJson.data.booking._id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bookingType\": \"scheduled\",\n  \"addressId\": \"6a2d0e83aff5f95b7452d086\",\n  \"paymentMethod\": \"upi\",\n  \"serviceId\": \"6a28325956af54824369fcff\",\n  \"duration\": 60,\n  \"location\": {\n    \"lat\": 10.0159,\n    \"lng\": 76.3419\n  },\n  \"scheduleDate\": \"2026-06-14T10:00:00\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/bookings",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "bookings"]
+        },
+        "description": "Booking Summary / Billing Details: Finalizes invoice details and generates a pending booking. Stores the created `bookingId` automatically."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingType\": \"scheduled\",\n  \"addressId\": \"6a2d0e83aff5f95b7452d086\",\n  \"paymentMethod\": \"upi\",\n  \"serviceId\": \"6a28325956af54824369fcff\",\n  \"duration\": 60,\n  \"location\": {\n    \"lat\": 10.0159,\n    \"lng\": 76.3419\n  },\n  \"scheduleDate\": \"2026-06-14T10:00:00\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/bookings",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "bookings"],
+              "query": []
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:24 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"4be-jK1Bn+b2XwDTbm/ZOfwmAm4jNGw\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "MldIN38_TUaY4ZoWnPRhug"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.kxr8"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Booking created successfully\",\n  \"data\": {\n    \"booking\": {\n      \"customer\": \"6a21a3cb145f20de670c561b\",\n      \"service\": \"6a28325956af54824369fcff\",\n      \"items\": [\n        {\n          \"service\": \"6a28325956af54824369fcff\",\n          \"name\": \"Instant Simulation Service\",\n          \"price\": 499,\n          \"duration\": 60,\n          \"_id\": \"6a2d0e90aff5f95b7452d10d\"\n        }\n      ],\n      \"subtotal\": 499,\n      \"platformFee\": 29,\n      \"gst\": 45,\n      \"totalAmount\": 573,\n      \"address\": {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\"\n      },\n      \"scheduleDate\": \"2026-06-14T10:00:00.000Z\",\n      \"bookingType\": \"scheduled\",\n      \"status\": \"pending\",\n      \"paymentStatus\": \"pending\",\n      \"currentQueueIndex\": 0,\n      \"searchRadiusMeters\": 5000,\n      \"isStarted\": false,\n      \"photos\": {\n        \"before\": [],\n        \"after\": []\n      },\n      \"location\": {\n        \"lat\": 10.0159,\n        \"lng\": 76.3419\n      },\n      \"isNearbyNotificationSent\": false,\n      \"propertyProfile\": {\n        \"bhkType\": \"3BHK\",\n        \"surfaceType\": []\n      },\n      \"estimatedTime\": 60,\n      \"_id\": \"6a2d0e90aff5f95b7452d10c\",\n      \"statusHistory\": [\n        {\n          \"status\": \"pending\",\n          \"timestamp\": \"2026-06-13T08:02:24.099Z\",\n          \"_id\": \"6a2d0e90aff5f95b7452d10e\"\n        }\n      ],\n      \"matchingQueue\": [],\n      \"checklist\": [],\n      \"createdAt\": \"2026-06-13T08:02:24.099Z\",\n      \"updatedAt\": \"2026-06-13T08:02:24.099Z\",\n      \"totalTime\": 60,\n      \"__v\": 0\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"a7fdbc34-aefa-4d11-8d02-78a37538200b\",\n    \"timestamp\": \"2026-06-13T08:02:24.381Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 17: Payment Verification (Razorpay Check)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"razorpay_order_id\": \"order_xyz\",\n  \"razorpay_payment_id\": \"pay_abc\",\n  \"razorpay_signature\": \"sig_123\",\n  \"bookingId\": \"6a2d0e90aff5f95b7452d10c\",\n  \"paymentId\": \"6a2d0e91aff5f95b7452d124\",\n  \"razorpayOrderId\": \"mock_upi_52g9br\",\n  \"razorpayPaymentId\": \"pay_k0hq3a\",\n  \"razorpaySignature\": \"mock_signature_val\",\n  \"mock\": true,\n  \"mockStatus\": \"success\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/payments/verify",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "payments", "verify"]
+        },
+        "description": "Payment Verification: Validates payment signature credentials to flag booking state as 'confirmed'."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"razorpay_order_id\": \"order_xyz\",\n  \"razorpay_payment_id\": \"pay_abc\",\n  \"razorpay_signature\": \"sig_123\",\n  \"bookingId\": \"6a2d0e90aff5f95b7452d10c\",\n  \"paymentId\": \"6a2d0e91aff5f95b7452d124\",\n  \"razorpayOrderId\": \"mock_upi_52g9br\",\n  \"razorpayPaymentId\": \"pay_k0hq3a\",\n  \"razorpaySignature\": \"mock_signature_val\",\n  \"mock\": true,\n  \"mockStatus\": \"success\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/payments/verify",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "payments", "verify"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:31 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"842-jt56e09hWnfqI0XWYkiC4Moqil0\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "v1cAYi4nT9WHbiTAWUN5dQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"No maids available in the area\",\n  \"data\": {\n    \"payment\": {\n      \"_id\": \"6a2d0e91aff5f95b7452d124\",\n      \"booking\": \"6a2d0e90aff5f95b7452d10c\",\n      \"customer\": \"6a21a3cb145f20de670c561b\",\n      \"amount\": 573,\n      \"currency\": \"INR\",\n      \"razorpayOrderId\": \"mock_upi_52g9br\",\n      \"status\": \"captured\",\n      \"method\": \"upi\",\n      \"isRefunded\": false,\n      \"createdAt\": \"2026-06-13T08:02:25.593Z\",\n      \"updatedAt\": \"2026-06-13T08:02:27.316Z\",\n      \"__v\": 0,\n      \"razorpayPaymentId\": \"pay_k0hq3a\",\n      \"razorpaySignature\": \"mock_signature_val\"\n    },\n    \"booking\": {\n      \"address\": {\n        \"title\": \"Home Flat\",\n        \"houseName\": \"Flat 8A, Skyline apartments\",\n        \"city\": \"Kochi\",\n        \"pincode\": \"682030\"\n      },\n      \"photos\": {\n        \"before\": [],\n        \"after\": []\n      },\n      \"location\": {\n        \"lat\": 10.0159,\n        \"lng\": 76.3419\n      },\n      \"propertyProfile\": {\n        \"bhkType\": \"3BHK\",\n        \"surfaceType\": []\n      },\n      \"_id\": \"6a2d0e90aff5f95b7452d10c\",\n      \"customer\": \"6a21a3cb145f20de670c561b\",\n      \"service\": \"6a28325956af54824369fcff\",\n      \"items\": [\n        {\n          \"service\": \"6a28325956af54824369fcff\",\n          \"name\": \"Instant Simulation Service\",\n          \"price\": 499,\n          \"duration\": 60,\n          \"_id\": \"6a2d0e90aff5f95b7452d10d\"\n        }\n      ],\n      \"subtotal\": 499,\n      \"platformFee\": 29,\n      \"gst\": 45,\n      \"totalAmount\": 573,\n      \"scheduleDate\": \"2026-06-14T10:00:00.000Z\",\n      \"bookingType\": \"scheduled\",\n      \"status\": \"refunded\",\n      \"paymentStatus\": \"refunded\",\n      \"currentQueueIndex\": 0,\n      \"searchRadiusMeters\": 5000,\n      \"isStarted\": false,\n      \"isNearbyNotificationSent\": false,\n      \"estimatedTime\": 60,\n      \"statusHistory\": [\n        {\n          \"status\": \"pending\",\n          \"timestamp\": \"2026-06-13T08:02:24.099Z\",\n          \"_id\": \"6a2d0e90aff5f95b7452d10e\"\n        },\n        {\n          \"status\": \"pending\",\n          \"timestamp\": \"2026-06-13T08:02:27.594Z\",\n          \"note\": \"Payment captured\",\n          \"_id\": \"6a2d0e93aff5f95b7452d13a\"\n        },\n        {\n          \"status\": \"refunded\",\n          \"timestamp\": \"2026-06-13T08:02:29.599Z\",\n          \"note\": \"No maids available in the area\",\n          \"_id\": \"6a2d0e95aff5f95b7452d149\"\n        }\n      ],\n      \"matchingQueue\": [],\n      \"checklist\": [],\n      \"createdAt\": \"2026-06-13T08:02:24.099Z\",\n      \"updatedAt\": \"2026-06-13T08:02:29.599Z\",\n      \"totalTime\": 60,\n      \"__v\": 0,\n      \"dispatchFailedReason\": \"No maids available in the area\",\n      \"dispatchStartedAt\": \"2026-06-13T08:02:29.599Z\"\n    },\n    \"checkoutState\": \"refunded\",\n    \"dispatch\": {\n      \"available\": false,\n      \"message\": \"No maids available in the area\",\n      \"candidateCount\": 0,\n      \"status\": \"refunded\"\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"4a27e064-a158-47c7-b1d1-08cc21bf77d0\",\n    \"timestamp\": \"2026-06-13T08:02:31.833Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 18: LiveTracking Screen (Poll Location)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/bookings/{{bookingId}}/tracking",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "bookings", "{{bookingId}}", "tracking"]
+        },
+        "description": "Live Tracking Screen: Polls active geolocation coordinates and job progress timelines."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/bookings/6a2d0e90aff5f95b7452d10c/tracking",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "bookings", "6a2d0e90aff5f95b7452d10c", "tracking"],
+              "query": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:35 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"5df-uEVlGltrZDWBbeUq2hvxZojr3ak\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "EqWIQ5KVQSSS7_Mv9I3ezw"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Tracking info retrieved\",\n  \"data\": {\n    \"bookingId\": \"6a2d0e90aff5f95b7452d10c\",\n    \"status\": \"completed\",\n    \"etaMinutes\": 0,\n    \"distance\": 11430,\n    \"distanceSource\": \"google_directions\",\n    \"routePolyline\": \"ap|{@coypMLt@b@hATXHPZrAXf@HVHNJv@`A`Cp@zAbAfATf@HLVPL\\\\BB@NtD_@nAEzDWxBMlDQl@GnEU|AC`COxBGnDKNAhBEzHUlAGfBGfBGnCEhBApC@fG?~GW`LItKErB?hI?vCAzB?~BDvBHhGJ|MD`C@pGBdEBnVNlPJtBB@Of@?lAFfB?pFCbG?|@@?tAGnAG\\\\FtFLbFBzD@tEL`KD~CDbAT|BdA|F`BbIv@lCnAdDxBfFxAvDrApD`@xAjBjHjF~QtBvHxDvNfBdHt@~Bb@|AtArFd@tCJp@FpB@bAC`AIrAWtBaAvD_ClIkBjGaBbGu@`CWz@aAzB_DnHuFzMk@lA}BlEq@lAeA~AmBfCQ^Od@AH@NNXTZvIdHhIbH~@~A^x@Pn@JG\",\n    \"routeSource\": \"google_directions\",\n    \"lat\": 9.9816,\n    \"lng\": 76.3213,\n    \"maidLocation\": {\n      \"lat\": 9.9816,\n      \"lng\": 76.3213\n    },\n    \"destinationLocation\": {\n      \"lat\": 10.0159,\n      \"lng\": 76.3419\n    },\n    \"maid\": {\n      \"id\": \"6a14241ee0df921c744f8cd6\",\n      \"name\": \"Reno Roy\",\n      \"phone\": \"9876543210\",\n      \"rating\": 4.8\n    },\n    \"startOtp\": null,\n    \"timeline\": [\n      {\n        \"status\": \"pending_payment\",\n        \"title\": \"Booking Created\",\n        \"time\": \"2026-06-13T08:02:24.099Z\",\n        \"completed\": true\n      },\n      {\n        \"status\": \"searching\",\n        \"title\": \"Finding nearby maid\",\n        \"time\": \"2026-06-13T08:02:29.858Z\",\n        \"completed\": true\n      },\n      {\n        \"status\": \"accepted\",\n        \"title\": \"Maid assigned\",\n        \"time\": \"2026-06-13T08:02:32.990Z\",\n        \"completed\": true\n      },\n      {\n        \"status\": \"ongoing\",\n        \"title\": \"Job In Progress\",\n        \"time\": \"2026-06-13T08:02:32.990Z\",\n        \"completed\": true\n      },\n      {\n        \"status\": \"completed\",\n        \"title\": \"Job Completed\",\n        \"time\": \"2026-06-13T08:02:32.990Z\",\n        \"completed\": true\n      }\n    ]\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"aa3deff8-e174-4b31-8b55-c9340804fcfa\",\n    \"timestamp\": \"2026-06-13T08:02:35.082Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 19: ServiceReview Screen (Post Rating)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{customerToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bookingId\": \"6a2d0e90aff5f95b7452d10c\",\n  \"rating\": 5,\n  \"comment\": \"Outstanding home cleaner service! highly recommended.\",\n  \"review\": \"Outstanding home cleaner service! highly recommended.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/reviews",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "reviews"]
+        },
+        "description": "Service Review Screen: Posts feedback and five-star rating vectors for the completed service."
+      },
+      "response": [
+        {
+          "name": "Simulated Response - Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjFhM2NiMTQ1ZjIwZGU2NzBjNTYxYiIsImlhdCI6MTc4MTMzNzcyNywiZXhwIjoxNzgxOTQyNTI3fQ.Rs2VbPmKLfVTx7FmqdTs52E0HmkVzIlFMLwb2euJvXo"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingId\": \"6a2d0e90aff5f95b7452d10c\",\n  \"rating\": 5,\n  \"comment\": \"Outstanding home cleaner service! highly recommended.\",\n  \"review\": \"Outstanding home cleaner service! highly recommended.\"\n}"
+            },
+            "url": {
+              "raw": "https://zaffabit-api-production.up.railway.app/api/v1/reviews",
+              "protocol": "https",
+              "host": ["zaffabit-api-production", "up", "railway", "app"],
+              "path": ["api", "v1", "reviews"],
+              "query": []
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "cross-origin-opener-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "cross-origin-resource-policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "date",
+              "value": "Sat, 13 Jun 2026 08:02:36 GMT"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"239-gQsTSY5hEOZ0e0qcCWzE+1dNkW8\""
+            },
+            {
+              "key": "origin-agent-cluster",
+              "value": "?1"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "server",
+              "value": "railway-hikari"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-dns-prefetch-control",
+              "value": "off"
+            },
+            {
+              "key": "x-download-options",
+              "value": "noopen"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "x-permitted-cross-domain-policies",
+              "value": "none"
+            },
+            {
+              "key": "x-railway-edge",
+              "value": "railway/us-west2"
+            },
+            {
+              "key": "x-railway-request-id",
+              "value": "PntzgNQORiuA5lpljq4OvQ"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "0"
+            },
+            {
+              "key": "x-hikari-trace",
+              "value": "ams1.aydy"
+            },
+            {
+              "key": "vary",
+              "value": "accept-encoding"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Review submitted successfully\",\n  \"data\": {\n    \"review\": {\n      \"booking\": \"6a2d0e90aff5f95b7452d10c\",\n      \"customer\": \"6a21a3cb145f20de670c561b\",\n      \"maid\": \"6a14241ee0df921c744f8cd6\",\n      \"rating\": 5,\n      \"review\": \"Outstanding home cleaner service! highly recommended.\",\n      \"tags\": [],\n      \"sentiment\": \"neutral\",\n      \"isIssueRaised\": false,\n      \"issueStatus\": \"none\",\n      \"_id\": \"6a2d0e9caff5f95b7452d18a\",\n      \"createdAt\": \"2026-06-13T08:02:36.290Z\",\n      \"updatedAt\": \"2026-06-13T08:02:36.290Z\",\n      \"__v\": 0\n    }\n  },\n  \"error\": null,\n  \"meta\": {\n    \"requestId\": \"8c3bf63f-a4a7-4052-a006-035d6e17950d\",\n    \"timestamp\": \"2026-06-13T08:02:36.566Z\"\n  }\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://zaffabit-api-production.up.railway.app",
+      "type": "string"
+    }
+  ]
+}

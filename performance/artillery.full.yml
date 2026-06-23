@@ -1,0 +1,142 @@
+config:
+  target: 'http://127.0.0.1:5001'
+  processor: './artilleryProcessor.js'
+  phases:
+    - name: 'Ramp to 50 concurrent admin sessions'
+      duration: 300
+      arrivalCount: 50
+  defaults:
+    headers:
+      locale: 'en'
+      ngrok-skip-browser-warning: 'true'
+  http:
+    timeout: 15
+  plugins:
+    metrics-by-endpoint: {}
+  ensure:
+    thresholds:
+      - http.response_time.p95: 2000
+      - http.response_time.p99: 4000
+    conditions:
+      - expression: 'vusers.failed / vusers.created < 0.01'
+
+scenarios:
+  - name: 'Dashboard'
+    weight: 25
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/admin/dashboard'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/bookings/recent?limit=5'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 10
+        count: 180
+
+  - name: 'Bookings and operations'
+    weight: 25
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/bookings?page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/bookings?page=20&limit=10&status=completed'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 10
+        count: 180
+
+  - name: 'Users and partners'
+    weight: 15
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/admin/users?role=customer&page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/users?role=maid&page=50&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 10
+        count: 180
+
+  - name: 'Finance'
+    weight: 15
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/admin/payments?page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/finance/refunds?page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/finance/settlements'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 10
+        count: 180
+
+  - name: 'Analytics'
+    weight: 10
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/admin/reports/financial'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/reports/bookings'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 10
+        count: 180
+
+  - name: 'Reports and search'
+    weight: 10
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/admin/reports/partners'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/reports/sentiment'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/activity-logs?page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 10
+        count: 180

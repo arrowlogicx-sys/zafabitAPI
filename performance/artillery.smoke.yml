@@ -1,0 +1,37 @@
+config:
+  target: 'http://127.0.0.1:5001'
+  processor: './artilleryProcessor.js'
+  phases:
+    - name: 'Warm-up'
+      duration: 60
+      arrivalCount: 5
+  defaults:
+    headers:
+      locale: 'en'
+      ngrok-skip-browser-warning: 'true'
+  http:
+    timeout: 15
+  plugins:
+    metrics-by-endpoint: {}
+
+scenarios:
+  - name: 'Admin warm-up'
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - loop:
+          - get:
+              url: '/api/v1/admin/dashboard'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/bookings?page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - get:
+              url: '/api/v1/admin/users?page=1&limit=10'
+              headers: { Authorization: 'Bearer {{ token }}' }
+          - think: 5
+        count: 6

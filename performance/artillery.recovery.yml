@@ -1,0 +1,31 @@
+config:
+  target: 'http://127.0.0.1:5001'
+  processor: './artilleryProcessor.js'
+  phases:
+    - name: 'Post-load recovery probe'
+      duration: 1
+      arrivalCount: 1
+  defaults:
+    headers:
+      locale: 'en'
+  plugins:
+    metrics-by-endpoint: {}
+
+scenarios:
+  - name: 'Recovery'
+    beforeScenario: 'ensureEnvironment'
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json: { email: '{{ adminEmail }}', password: '{{ adminPassword }}' }
+          capture: { json: '$.data.token', as: 'token' }
+          afterResponse: 'validateLogin'
+      - get:
+          url: '/api/v1/admin/dashboard'
+          headers: { Authorization: 'Bearer {{ token }}' }
+      - get:
+          url: '/api/v1/bookings?page=1&limit=10'
+          headers: { Authorization: 'Bearer {{ token }}' }
+      - get:
+          url: '/api/v1/admin/users?page=1&limit=10'
+          headers: { Authorization: 'Bearer {{ token }}' }
