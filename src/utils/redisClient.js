@@ -4,7 +4,7 @@ const DEFAULT_REDIS_URL = 'redis://localhost:6379';
 const clients = new Map();
 
 function getRedisUrl() {
-  return process.env.REDIS_URL || process.env.REDIS_CONNECTION_STRING || '';
+  return process.env.REDIS_URL_INTERNAL || process.env.REDIS_URL || process.env.REDIS_CONNECTION_STRING || '';
 }
 
 function isRedisConfigured() {
@@ -56,3 +56,4 @@ module.exports = {
   getRedisUrl,
   isRedisConfigured,
 };
+
