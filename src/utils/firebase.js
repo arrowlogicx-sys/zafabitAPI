@@ -1,8 +1,13 @@
 const admin = require('firebase-admin');
 const User = require('../models/User');
 
-// Load the service account credentials provided by the user
-const serviceAccount = require('../../zafabit-b4650-firebase-adminsdk-fbsvc-7e5528b463.json');
+// Service account credentials must be supplied via FIREBASE_SERVICE_ACCOUNT
+// (the full service-account JSON, minified to one line) as an environment
+// variable, never committed to the repo.
+if (!process.env.FIREBASE_SERVICE_ACCOUNT) {
+  throw new Error('FIREBASE_SERVICE_ACCOUNT environment variable is required');
+}
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 // Initialize Firebase Admin App
 admin.initializeApp({
