@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY src ./src
-COPY public ./public
+RUN mkdir -p ./public/uploads
 COPY generate_api_test_report.js ./generate_api_test_report.js
 COPY generate_cross_surface_api_kpi_gap_report.js ./generate_cross_surface_api_kpi_gap_report.js
 
