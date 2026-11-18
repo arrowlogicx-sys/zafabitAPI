@@ -1,0 +1,432 @@
+# Dev environment for the 11-service PostgreSQL split (see plan:
+# shiny-puzzling-wave.md). One Postgres container per service — database
+# per service from day one, matching the roadmap's Dev/Staging/Production
+# rows (Section 11.5) — plus one shared Redis used by Dispatch/Matching's
+# live geo index and BullMQ.
+#
+# Every service DB uses the same default creds for local dev convenience;
+# override via each service's own .env for anything beyond localhost.
+
+x-postgres-defaults: &postgres-defaults
+  image: postgres:16-alpine
+  restart: unless-stopped
+  environment:
+    POSTGRES_USER: zafabit
+    POSTGRES_PASSWORD: zafabit_dev_password
+  healthcheck:
+    test: ["CMD-SHELL", "pg_isready -U zafabit"]
+    interval: 5s
+    timeout: 5s
+    retries: 10
+
+services:
+  auth-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_auth
+    ports:
+      - "5433:5432"
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+
+  identity_profiles-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_identity_profiles
+    ports:
+      - "5434:5432"
+    volumes:
+      - identity_profiles_db_data:/var/lib/postgresql/data
+
+  maid-db:
+    # Maid owns maid_profiles.current_location (PostGIS geography) —
+    # needs the postgis image, not plain postgres.
+    image: postgis/postgis:16-3.4-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_maid
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zafabit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5435:5432"
+    volumes:
+      - maid_db_data:/var/lib/postgresql/data
+
+  service_catalogue-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_service_catalogue
+    ports:
+      - "5436:5432"
+    volumes:
+      - service_catalogue_db_data:/var/lib/postgresql/data
+
+  booking_engine-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_booking_engine
+    ports:
+      - "5437:5432"
+    volumes:
+      - booking_engine_db_data:/var/lib/postgresql/data
+
+  dispatch_matching-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_dispatch_matching
+    ports:
+      - "5438:5432"
+    volumes:
+      - dispatch_matching_db_data:/var/lib/postgresql/data
+
+  payments-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_payments
+    ports:
+      - "5439:5432"
+    volumes:
+      - payments_db_data:/var/lib/postgresql/data
+
+  payouts-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_payouts
+    ports:
+      - "5440:5432"
+    volumes:
+      - payouts_db_data:/var/lib/postgresql/data
+
+  promotions_rewards-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_promotions_rewards
+    ports:
+      - "5441:5432"
+    volumes:
+      - promotions_rewards_db_data:/var/lib/postgresql/data
+
+  notifications-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_notifications
+    ports:
+      - "5442:5432"
+    volumes:
+      - notifications_db_data:/var/lib/postgresql/data
+
+  support_trust-db:
+    <<: *postgres-defaults
+    environment:
+      POSTGRES_USER: zafabit
+      POSTGRES_PASSWORD: zafabit_dev_password
+      POSTGRES_DB: zafabit_support_trust
+    ports:
+      - "5443:5432"
+    volumes:
+      - support_trust_db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6390:6379"
+    volumes:
+      - redis_data:/data
+
+  auth:
+    build:
+      context: ./services/auth
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4001
+      DB_HOST: auth-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_auth
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      JWT_SECRET: zafabit_dev_jwt_secret
+      JWT_EXPIRE: 30d
+      IDENTITY_PROFILES_SERVICE_URL: http://identity_profiles:4002
+      INTERNAL_API_KEY: zafabit_dev_internal_key
+      INTERNAL_HTTP_TIMEOUT_MS: 1500
+    ports:
+      - "4001:4001"
+    depends_on:
+      auth-db:
+        condition: service_healthy
+
+  identity_profiles:
+    build:
+      context: ./services/identity-profiles
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4002
+      DB_HOST: identity_profiles-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_identity_profiles
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      JWT_SECRET: zafabit_dev_jwt_secret
+      INTERNAL_API_KEY: zafabit_dev_internal_key
+    ports:
+      - "4002:4002"
+    depends_on:
+      identity_profiles-db:
+        condition: service_healthy
+
+  maid:
+    build:
+      context: ./services/maid
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4003
+      DB_HOST: maid-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_maid
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      SOS_EMERGENCY_NUMBER: ${SOS_EMERGENCY_NUMBER:-}
+    ports:
+      # host 4103, not 4003 — 4003 is already bound by an unrelated
+      # container (admin-bff) on this machine; internal port stays 4003
+      - "4103:4003"
+    depends_on:
+      maid-db:
+        condition: service_healthy
+
+  service_catalogue:
+    build:
+      context: ./services/service-catalogue
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4004
+      DB_HOST: service_catalogue-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_service_catalogue
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+    ports:
+      - "4004:4004"
+    depends_on:
+      service_catalogue-db:
+        condition: service_healthy
+
+  booking_engine:
+    build:
+      context: ./services/booking-engine
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4005
+      DB_HOST: booking_engine-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_booking_engine
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      SERVICE_CATALOGUE_SERVICE_URL: http://service_catalogue:4004
+      IDENTITY_PROFILES_SERVICE_URL: http://identity_profiles:4002
+      AUTH_SERVICE_URL: http://auth:4001
+    ports:
+      - "4005:4005"
+    depends_on:
+      booking_engine-db:
+        condition: service_healthy
+
+  dispatch_matching:
+    build:
+      context: ./services/dispatch-matching
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4006
+      DB_HOST: dispatch_matching-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_dispatch_matching
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      REDIS_URL: redis://redis:6379
+      # Realtime (Socket.IO live tracking): who is on a booking comes from
+      # booking-engine; the maid's own location/presence goes to maid-service.
+      BOOKING_ENGINE_SERVICE_URL: http://booking_engine:4005
+      MAID_SERVICE_URL: http://maid:4003
+    ports:
+      - "4006:4006"
+    depends_on:
+      dispatch_matching-db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  payments:
+    build:
+      context: ./services/payments
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4007
+      DB_HOST: payments-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_payments
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      JWT_SECRET: zafabit_dev_jwt_secret
+      INTERNAL_API_KEY: zafabit_dev_internal_key
+      AUTH_SERVICE_URL: http://auth:4001
+      BOOKING_ENGINE_URL: http://booking_engine:4005
+      CASHFREE_ENV: sandbox
+      CASHFREE_CLIENT_ID: ${CASHFREE_CLIENT_ID:-}
+      CASHFREE_CLIENT_SECRET: ${CASHFREE_CLIENT_SECRET:-}
+      CASHFREE_WEBHOOK_URL: ${CASHFREE_WEBHOOK_URL:-}
+    ports:
+      - "4007:4007"
+    depends_on:
+      payments-db:
+        condition: service_healthy
+
+  payouts:
+    build:
+      context: ./services/payouts
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4008
+      DB_HOST: payouts-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_payouts
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+    ports:
+      - "4008:4008"
+    depends_on:
+      payouts-db:
+        condition: service_healthy
+
+  promotions_rewards:
+    build:
+      context: ./services/promotions-rewards
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4009
+      DB_HOST: promotions_rewards-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_promotions_rewards
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+    ports:
+      - "4009:4009"
+    depends_on:
+      promotions_rewards-db:
+        condition: service_healthy
+
+  notifications:
+    build:
+      context: ./services/notifications
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4010
+      DB_HOST: notifications-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_notifications
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+    ports:
+      - "4010:4010"
+    depends_on:
+      notifications-db:
+        condition: service_healthy
+
+  support_trust:
+    build:
+      context: ./services/support-trust
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4011
+      DB_HOST: support_trust-db
+      DB_PORT: 5432
+      DB_NAME: zafabit_support_trust
+      DB_USER: zafabit
+      DB_PASSWORD: zafabit_dev_password
+      SOS_EMERGENCY_NUMBER: ${SOS_EMERGENCY_NUMBER:-}
+    ports:
+      - "4011:4011"
+    depends_on:
+      support_trust-db:
+        condition: service_healthy
+
+  gateway:
+    build:
+      context: ./gateway
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      AUTH_SERVICE_URL: http://auth:4001
+      IDENTITY_PROFILES_SERVICE_URL: http://identity_profiles:4002
+      MAID_SERVICE_URL: http://maid:4003
+      SERVICE_CATALOGUE_SERVICE_URL: http://service_catalogue:4004
+      BOOKING_ENGINE_SERVICE_URL: http://booking_engine:4005
+      DISPATCH_MATCHING_SERVICE_URL: http://dispatch_matching:4006
+      PAYMENTS_SERVICE_URL: http://payments:4007
+      PAYOUTS_SERVICE_URL: http://payouts:4008
+      PROMOTIONS_REWARDS_SERVICE_URL: http://promotions_rewards:4009
+      NOTIFICATIONS_SERVICE_URL: http://notifications:4010
+      SUPPORT_TRUST_SERVICE_URL: http://support_trust:4011
+    ports:
+      - "4000:4000"
+    depends_on:
+      - auth
+      - identity_profiles
+      - maid
+      - service_catalogue
+      - booking_engine
+      - dispatch_matching
+      - payments
+      - payouts
+      - promotions_rewards
+      - notifications
+      - support_trust
+
+volumes:
+  auth_db_data:
+  identity_profiles_db_data:
+  maid_db_data:
+  service_catalogue_db_data:
+  booking_engine_db_data:
+  dispatch_matching_db_data:
+  payments_db_data:
+  payouts_db_data:
+  promotions_rewards_db_data:
+  notifications_db_data:
+  support_trust_db_data:
+  redis_data:
