@@ -213,6 +213,7 @@ services:
       DB_USER: zafabit
       DB_PASSWORD: zafabit_dev_password
       SOS_EMERGENCY_NUMBER: ${SOS_EMERGENCY_NUMBER:-}
+      SUPPORT_TRUST_SERVICE_URL: http://support_trust:4011
     ports:
       # host 4103, not 4003 — 4003 is already bound by an unrelated
       # container (admin-bff) on this machine; internal port stays 4003
@@ -378,6 +379,7 @@ services:
       DB_USER: zafabit
       DB_PASSWORD: zafabit_dev_password
       SOS_EMERGENCY_NUMBER: ${SOS_EMERGENCY_NUMBER:-}
+      INTERNAL_API_KEY: zafabit_dev_internal_key
     ports:
       - "4011:4011"
     depends_on:
